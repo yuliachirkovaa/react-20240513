@@ -1,16 +1,22 @@
 /* eslint-disable react/jsx-key */
-/* eslint-disable react/prop-types */
 
-import { Position } from "../position/component";
+import { Dish } from "../dish/component";
 
-export const Menu = ({menu}) => {
+export const Menu = ({ menu }) => {
+  if (!menu) {
+    return <div>No menu</div>;
+  }
+
   return (
-    <ul>
-      {menu.map((position) => (
-        <li>
-          <Position position={position.name}/>
-        </li>
-      ))}
-    </ul>
+    <div>
+      <h3>Menu</h3>
+      <ul>
+        {menu.map((dish) => (
+          <li>
+            <Dish dish={dish}/>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 };

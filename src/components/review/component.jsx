@@ -1,6 +1,13 @@
-/* eslint-disable react/jsx-key */
-/* eslint-disable react/prop-types */
+export const Review = ({ review }) => {
+  if (!review) {
+    return <div>No review</div>;
+  }
 
-export const Review = ({review}) => {
-  return <span>{review}</span>;
+  const {text} = review;
+
+  if (text) {
+    return <span>{text}</span>;
+  } else {
+    return <span>No text</span>;
+  }
 };
