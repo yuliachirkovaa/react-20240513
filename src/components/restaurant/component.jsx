@@ -8,13 +8,13 @@ export const Restaurant = ({ restaurant }) => {
     return <div>No restaurant</div>;
   }
 
-  const {name, menu, reviews} = restaurant;
+  const { name, menu, reviews } = restaurant;
 
   return (
     <div>
       <h2>{name}</h2>
-      {!!menu?.length && <Menu menu={menu}/>}
-      {!!reviews?.length && <Reviews reviews={reviews}/>}
+      {!!menu?.length && <Menu menu = {menu}/>}
+      {!!reviews?.length && <Reviews reviews = {reviews}/>}
     </div>
   );
 };
