@@ -1,16 +1,22 @@
 /* eslint-disable react/jsx-key */
-/* eslint-disable react/prop-types */
 
 import { Review } from "../review/component";
 
-export const Reviews = ({reviews}) => {
+export const Reviews = ({ reviews }) => {
+  if (!reviews) {
+    return <div>No reviews</div>;
+  }
+
   return (
-    <ul>
-      {reviews.map((review) => (
-        <li>
-          <Review review={review.text}/>
-        </li>
-      ))}
-    </ul>
+    <div>
+      <h3>Reviews</h3>
+      <ul>
+        {reviews.map((review) => (
+          <li>
+            <Review review={review}/>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 };
