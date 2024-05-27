@@ -3,7 +3,7 @@ export const Review = ({ review }) => {
     return <div>No review</div>;
   }
 
-  const {text} = review;
+  const { text } = review;
 
   if (text) {
     return <span>{text}</span>;
