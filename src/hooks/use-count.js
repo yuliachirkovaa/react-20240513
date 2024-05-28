@@ -12,5 +12,5 @@ export const useCount = ({ initialValue = 0, min = 0, max = 5 } = {}) => {
     setCount((currentCount) => currentCount === min ? currentCount : currentCount - 1);
   }, [min]);
 
-  return { count, increment, decrement, min, max };
+  return { count, increment, decrement };
 };

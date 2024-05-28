@@ -2,7 +2,7 @@ import { useCount } from "../../hooks/use-count";
 import { Button } from "../button/component";
 
 export const Dish = ({ dish }) => {
-  const { count, increment, decrement, min, max } = useCount();
+  const { count, increment, decrement } = useCount();
 
   if (!dish) {
     return <div>No dish</div>;
@@ -15,9 +15,9 @@ export const Dish = ({ dish }) => {
       <div>
         <span>{name}</span>
         <div>
-          <Button onClick = {decrement} disabled = {count === min}>-</Button>
+          <Button onClick = {decrement} disabled = {count === 0}>-</Button>
           {count}
-          <Button onClick = {increment} disabled = {count === max}>+</Button>
+          <Button onClick = {increment} disabled = {count === 5}>+</Button>
         </div>
       </div>
     );
