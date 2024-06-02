@@ -1,7 +1,10 @@
+import { useContext } from "react";
 import { useCount } from "../../hooks/use-count";
 import { Button } from "../button/component";
+import { UserContext } from "../../contexts/user";
 
 export const Dish = ({ dish }) => {
+  const user = useContext(UserContext);
   const { count, increment, decrement } = useCount();
 
   if (!dish) {
@@ -14,11 +17,14 @@ export const Dish = ({ dish }) => {
     return (
       <div>
         <span>{name}</span>
-        <div>
-          <Button onClick = {decrement} disabled = {count === 0}>-</Button>
-          {count}
-          <Button onClick = {increment} disabled = {count === 5}>+</Button>
-        </div>
+        {user && (
+          <div>
+            <Button onClick = {decrement} disabled = {count === 0}>-</Button>
+            {count}
+            <Button onClick = {increment} disabled = {count === 5}>+</Button>
+          </div>
+          )
+        }
       </div>
     );
   } else {
