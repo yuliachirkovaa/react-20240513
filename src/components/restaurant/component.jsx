@@ -15,24 +15,6 @@ export const Restaurant = ({ restaurant }) => {
       <h2>{name}</h2>
       {!!menu?.length && <Menu menu = {menu}/>}
       {!!reviews?.length && <Reviews reviews = {reviews}/>}
-      <h2>{name}</h2>
-      {!!menu?.length && <Menu menu = {menu}/>}
-      {!!reviews?.length && <Reviews reviews = {reviews}/>}
-      <h2>{name}</h2>
-      {!!menu?.length && <Menu menu = {menu}/>}
-      {!!reviews?.length && <Reviews reviews = {reviews}/>}
-      <h2>{name}</h2>
-      {!!menu?.length && <Menu menu = {menu}/>}
-      {!!reviews?.length && <Reviews reviews = {reviews}/>}
-      <h2>{name}</h2>
-      {!!menu?.length && <Menu menu = {menu}/>}
-      {!!reviews?.length && <Reviews reviews = {reviews}/>}
-      <h2>{name}</h2>
-      {!!menu?.length && <Menu menu = {menu}/>}
-      {!!reviews?.length && <Reviews reviews = {reviews}/>}
-      <h2>{name}</h2>
-      {!!menu?.length && <Menu menu = {menu}/>}
-      {!!reviews?.length && <Reviews reviews = {reviews}/>}
     </div>
   );
 };

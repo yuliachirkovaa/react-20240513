@@ -1,8 +1,8 @@
-import { useContext } from "react";
-import { ThemeContext } from "../../contexts/buttons-theme";
+import { themes } from "../../contexts/theme/constants";
+import { useTheme } from "../../contexts/theme/hooks";
 
 export const Button = ({ children, onClick, disabled }) => {
-  const theme = useContext(ThemeContext);
+  const { theme } = useTheme();
 
   return (
   <button
@@ -13,7 +13,7 @@ export const Button = ({ children, onClick, disabled }) => {
       borderWidth: "0.5px",
       borderRadius: "2px",
       borderColor: "buttonborder",
-      background: `${theme}`
+      background: `${theme === themes.default? "buttonface" : "pink"}`
     }}
   >
     {children}

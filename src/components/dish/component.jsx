@@ -1,10 +1,9 @@
-import { useContext } from "react";
+import { useUser } from "../../contexts/user/hooks";
 import { useCount } from "../../hooks/use-count";
 import { Button } from "../button/component";
-import { UserContext } from "../../contexts/user";
 
 export const Dish = ({ dish }) => {
-  const user = useContext(UserContext);
+  const { user } = useUser();
   const { count, increment, decrement } = useCount();
 
   if (!dish) {
