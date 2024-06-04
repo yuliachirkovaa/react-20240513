@@ -35,14 +35,17 @@ export const NewReviewForm = () => {
           placeholder="Your name"
           value={form.name}
           onChange={(event) => dispatch({ type: "setName", payload: event.target.value })}
-          />
+        />
         <input
           type="text"
           placeholder="Your review"
           value={form.text}
           onChange={(event) => dispatch({ type: "setText", payload: event.target.value })}
-          />
-        <Rating dispatch = {(event) => dispatch({ type: "setRating", payload: Number(event.target.textContent) })} />
+        />
+        <Rating
+          value = {form.rating}
+          onChange = {(rating) => dispatch({ type: "setRating", payload: rating })}
+        />
         <Button onClick = {() => dispatch({ type: "cleanForm" })}>Save</Button>
       </div>
     </div>

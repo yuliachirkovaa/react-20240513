@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-key */
 
 import { Review } from "../review/component";
+import { NewReviewForm } from "../new-review-form/component";
 
 export const Reviews = ({ reviews }) => {
   if (!reviews) {
@@ -17,6 +18,7 @@ export const Reviews = ({ reviews }) => {
           </li>
         ))}
       </ul>
+      <NewReviewForm />
     </div>
   );
 };
