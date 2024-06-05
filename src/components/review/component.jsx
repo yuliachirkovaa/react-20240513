@@ -1,12 +1,14 @@
-export const Review = ({ review }) => {
-  if (!review) {
+import { useSelector } from "react-redux";
+
+export const Review = ({ reviewId }) => {
+  const review = useSelector((state) => state.review.entities[reviewId]);
+
+  if (!reviewId) {
     return <div>No review</div>;
   }
 
-  const { text } = review;
-
-  if (text) {
-    return <span>{text}</span>;
+  if (review.text) {
+    return <span>{review.text}</span>;
   } else {
     return <span>No text</span>;
   }

@@ -3,8 +3,8 @@
 import { Review } from "../review/component";
 import { NewReviewForm } from "../new-review-form/component";
 
-export const Reviews = ({ reviews }) => {
-  if (!reviews) {
+export const Reviews = ({ reviewIds }) => {
+  if (!reviewIds) {
     return <div>No reviews</div>;
   }
 
@@ -12,9 +12,9 @@ export const Reviews = ({ reviews }) => {
     <div>
       <h3>Reviews</h3>
       <ul>
-        {reviews.map((review) => (
+        {reviewIds.map((id) => (
           <li>
-            <Review review = {review}/>
+            <Review reviewId = {id}/>
           </li>
         ))}
       </ul>

@@ -1,12 +1,15 @@
 /* eslint-disable react/jsx-key */
 
+import { useSelector } from "react-redux";
 import { Tab } from "../tab/component";
 
-export const RestaurantTabs = ({ restaurants, onTabClick, activeIndex }) => {
+export const RestaurantTabs = ({ restaurantIds, onTabClick, activeId }) => {
+  const restaurants = useSelector((state) => state.restaurant.entities);
+
   return (
     <div>
-      {restaurants.map(({name}, index) => (
-        <Tab onClick = {() => onTabClick(index)} isActive = {activeIndex === index}>{name}</Tab>
+      {restaurantIds.map((id) => (
+        <Tab onClick = {() => onTabClick(id)} isActive = {activeId === id}>{restaurants[id].name}</Tab>
       ))}
     </div>
   );
