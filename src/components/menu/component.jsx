@@ -2,8 +2,8 @@
 
 import { Dish } from "../dish/component";
 
-export const Menu = ({ menu }) => {
-  if (!menu) {
+export const Menu = ({ dishIds }) => {
+  if (!dishIds) {
     return <div>No menu</div>;
   }
 
@@ -11,9 +11,9 @@ export const Menu = ({ menu }) => {
     <div>
       <h3>Menu</h3>
       <ul>
-        {menu.map((dish) => (
+        {dishIds.map((id) => (
           <li>
-            <Dish dish = {dish}/>
+            <Dish dishId = {id}/>
           </li>
         ))}
       </ul>
