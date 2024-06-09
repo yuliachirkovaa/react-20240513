@@ -1,17 +1,22 @@
 /* eslint-disable react/jsx-key */
 
-import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useState, useEffect } from "react";
 import { RestaurantTabs } from "../restaurant-tabs/component";
 import { Restaurant } from "../restaurant/component";
-import { useSelector } from "react-redux";
+import { getRestaurants } from "../../redux/entities/restaurant/thunks/get-restaurants";
 
 export const Restaurants = () => {
-  const restaurantIds = useSelector((state) => state.restaurant.ids);
-  const [activeRestaurantId, setActiveRestaurantId] = useState("a757a0e9-03c1-4a2a-b384-8ac21dbe2fb2");
+  const [activeRestaurantId, setActiveRestaurantId] = useState();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getRestaurants());
+  }, [dispatch]);
 
   return (
     <div>
-      <RestaurantTabs restaurantIds = {restaurantIds} onTabClick = {setActiveRestaurantId} activeId = {activeRestaurantId}/>
+      <RestaurantTabs onTabClick = {setActiveRestaurantId} activeId = {activeRestaurantId}/>
       <Restaurant restaurantId = {activeRestaurantId}/>
     </div>
   );
