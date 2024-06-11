@@ -7,10 +7,6 @@ import { decrement, increment } from "../../redux/ui/cart";
 import { useCallback } from "react";
 
 export const Dish = ({ dishId }) => {
-  if (!dishId) {
-    return <div>No dish</div>;
-  }
-
   const dish = useSelector((state) => selectDishById(state, dishId));
   const { user } = useUser();
   const count = useSelector((state) => selectDishCount(state, dishId));
@@ -24,17 +20,17 @@ export const Dish = ({ dishId }) => {
     dispatch(decrement(dishId)),
   [dispatch, dishId]);
 
-  if (dish.name) {
-    return (
-      <div>
-        <span>{dish.name}</span>
-        {user && (
-          <Counter value = {count} increment = {handleIncrement} decrement = {handleDecrement}/>
-          )
-        }
-      </div>
-    );
-  } else {
-    return <span>No name</span>;
+  if (!dish) {
+    return;
   }
+
+  return (
+    <div>
+      <span>{dish.name}</span>
+      {user && (
+        <Counter value = {count} increment = {handleIncrement} decrement = {handleDecrement}/>
+        )
+      }
+    </div>
+  );
 };

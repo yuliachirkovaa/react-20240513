@@ -11,8 +11,12 @@ export const Menu = ({ restaurantId }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getDishesByRestaurantId(restaurantId));
+    dispatch(getDishesByRestaurantId({ restaurantId }));
   }, [dispatch, restaurantId]);
+
+  if (!dishIds?.length) {
+    return;
+  }
 
   return (
     <div>

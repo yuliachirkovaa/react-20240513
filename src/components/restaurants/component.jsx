@@ -17,7 +17,7 @@ export const Restaurants = () => {
   return (
     <div>
       <RestaurantTabs onTabClick = {setActiveRestaurantId} activeId = {activeRestaurantId}/>
-      <Restaurant restaurantId = {activeRestaurantId}/>
+      {activeRestaurantId && <Restaurant restaurantId = {activeRestaurantId}/> || <div>No restaurant</div>}
     </div>
   );
 };
