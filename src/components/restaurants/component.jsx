@@ -1,7 +1,6 @@
 /* eslint-disable react/jsx-key */
 
-import { useDispatch } from "react-redux";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { RestaurantTabs } from "../restaurant-tabs/component";
 import { Restaurant } from "../restaurant/component";
 

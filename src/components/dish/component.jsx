@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useDispatch, useSelector } from "react-redux";
 import { useUser } from "../../contexts/user/hooks";
 import { Counter } from "../counter/component";
 import { selectDishCount } from "../../redux/ui/cart/selectors";
@@ -24,19 +23,7 @@ export const Dish = ({ dishId }) => {
   const handleDecrement = useCallback(() =>
     dispatch(decrement(dishId)),
   [dispatch, dishId]);
-  const count = useSelector((state) => selectDishCount(state, dishId));
-  const dispatch = useDispatch();
 
-  const handleIncrement = useCallback(() =>
-    dispatch(increment(dishId)),
-  [dispatch, dishId]);
-
-  const handleDecrement = useCallback(() =>
-    dispatch(decrement(dishId)),
-  [dispatch, dishId]);
-
-  if (!dish) {
-    return;
   if (!dish) {
     return;
   }

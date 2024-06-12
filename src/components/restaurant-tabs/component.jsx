@@ -2,11 +2,6 @@
 
 import { useGetRestaurantsQuery } from "../../redux/service/api";
 import { Tab } from "../tab/component";
-import { selectRestaurant, selectRestaurantIds } from "../../redux/entities/restaurant/selectors";
-
-export const RestaurantTabs = ({ onTabClick, activeId }) => {
-  const restaurantIds = useSelector(selectRestaurantIds);
-  const restaurants = useSelector(selectRestaurant);
 
 export const RestaurantTabs = ({ onTabClick, activeId }) => {
   const { data: restaurants, isLoading } = useGetRestaurantsQuery();
