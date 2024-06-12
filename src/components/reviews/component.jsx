@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-key */
 
 import { Review } from "../review/component";
+import { getReviewsByRestaurantId } from "../../redux/entities/review/thunks/get-reviews-by-restaurant-id";
 import { NewReviewForm } from "../new-review-form/component";
 import { useGetReviewsByRestaurantIdQuery } from "../../redux/service/api";
 

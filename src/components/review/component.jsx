@@ -8,9 +8,12 @@ export const Review = ({ reviewId }) => {
 
   if (!review) {
     return;
+  if (!review) {
+    return;
   }
 
   const { text } = review;
 
   return <span>{text}</span>;
 };
+

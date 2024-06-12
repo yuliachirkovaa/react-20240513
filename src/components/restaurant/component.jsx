@@ -13,13 +13,14 @@ export const Restaurant = ({ restaurantId }) => {
 
   if (!restaurant) {
     return;
+    return;
   }
-
-  const { name, menu, reviews } = restaurant;
 
   return (
     <div>
       <h2>{name}</h2>
+      {!!menu?.length && <Menu restaurantId = {restaurantId}/>}
+      {!!reviews?.length && <Reviews restaurantId = {restaurantId}/>}
       {!!menu?.length && <Menu restaurantId = {restaurantId}/>}
       {!!reviews?.length && <Reviews restaurantId = {restaurantId}/>}
     </div>

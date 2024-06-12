@@ -15,6 +15,13 @@ export const App = () => {
         </Layout>
       </ThemeContextProvider>
     </UserContextProvider>
+    <UserContextProvider>
+      <ThemeContextProvider>
+        <Layout>
+          <Restaurants />
+        </Layout>
+      </ThemeContextProvider>
+    </UserContextProvider>
   );
 };
 
