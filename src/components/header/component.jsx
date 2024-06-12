@@ -1,16 +1,16 @@
 /* eslint-disable no-unused-vars */
 
 import { AuthorizationButton } from "../authorization-button/component";
-import { Scrollbar } from "../scrollbar/component";
+import { CartIndicator } from "../cart-indicator/component";
 import { ThemeToggler } from "../theme-toggler/component";
 
 export const Header = () => {
   return (
-    <header style = {{ position: "sticky", top: "0" }}>
+    <header>
       Header will be here
       <ThemeToggler />
       <AuthorizationButton />
-      <Scrollbar />
+      <CartIndicator />
     </header>
   );
 };
