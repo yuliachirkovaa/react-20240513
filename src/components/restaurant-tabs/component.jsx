@@ -1,21 +1,23 @@
 /* eslint-disable react/jsx-key */
 
-import { useSelector } from "react-redux";
+import { useGetRestaurantsQuery } from "../../redux/service/api";
 import { Tab } from "../tab/component";
-import { selectRestaurant, selectRestaurantIds } from "../../redux/entities/restaurant/selectors";
 
 export const RestaurantTabs = ({ onTabClick, activeId }) => {
-  const restaurantIds = useSelector(selectRestaurantIds);
-  const restaurants = useSelector(selectRestaurant);
+  const { data: restaurants, isLoading } = useGetRestaurantsQuery();
 
-  if (!restaurantIds || !restaurants) {
+  if (isLoading) {
+    return <div>Loading...</div>
+  }
+
+  if (!restaurants) {
     return;
   }
 
   return (
     <div>
-      {restaurantIds.map((id) => (
-        <Tab onClick = {() => onTabClick(id)} isActive = {activeId === id}>{restaurants[id].name}</Tab>
+      {restaurants.map(({ id, name }) => (
+        <Tab onClick = {() => onTabClick(id)} isActive = {activeId === id}>{name}</Tab>
       ))}
     </div>
   );

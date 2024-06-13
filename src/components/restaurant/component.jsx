@@ -1,17 +1,21 @@
 /* eslint-disable react/jsx-key */
 
-import { useSelector } from "react-redux";
 import { Menu } from "../menu/component";
 import { Reviews } from "../reviews/component";
-import { selectRestaurantById } from "../../redux/entities/restaurant/selectors";
+import { useGetRestaurantsQuery } from "../../redux/service/api";
+import { selectRestaurantFromResult } from "../../redux/service/api/selectors";
 
 export const Restaurant = ({ restaurantId }) => {
-  const restaurant = useSelector((state) => selectRestaurantById(state, restaurantId));
-  const { name, menu, reviews } = restaurant;
+  const { data: restaurant } = useGetRestaurantsQuery(undefined, {
+    skip: !restaurantId,
+    selectFromResult: selectRestaurantFromResult(restaurantId),
+  });
 
   if (!restaurant) {
     return;
   }
+
+  const { name, menu, reviews } = restaurant;
 
   return (
     <div>

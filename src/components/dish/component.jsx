@@ -1,13 +1,17 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useUser } from "../../contexts/user/hooks";
-import { selectDishById } from "../../redux/entities/dish/selectors";
 import { Counter } from "../counter/component";
 import { selectDishCount } from "../../redux/ui/cart/selectors";
 import { decrement, increment } from "../../redux/ui/cart";
 import { useCallback } from "react";
+import { useGetDishesByRestaurantIdQuery } from "../../redux/service/api";
+import { selectDishFromResult } from "../../redux/service/api/selectors";
 
 export const Dish = ({ dishId }) => {
-  const dish = useSelector((state) => selectDishById(state, dishId));
+  const { data: dish } = useGetDishesByRestaurantIdQuery(undefined, {
+    selectFromResult: selectDishFromResult(dishId),
+  });
+
   const { user } = useUser();
   const count = useSelector((state) => selectDishCount(state, dishId));
   const dispatch = useDispatch();
@@ -24,9 +28,11 @@ export const Dish = ({ dishId }) => {
     return;
   }
 
+  const { name } = dish;
+
   return (
     <div>
-      <span>{dish.name}</span>
+      <span>{name}</span>
       {user && (
         <Counter value = {count} increment = {handleIncrement} decrement = {handleDecrement}/>
         )
