@@ -1,15 +1,17 @@
-import { useSelector } from "react-redux";
+import { useGetReviewsByRestaurantIdQuery } from "../../redux/service/api";
+import { selectReviewFromResult } from "../../redux/service/api/selectors";
 
 export const Review = ({ reviewId }) => {
-  const review = useSelector((state) => state.review.entities[reviewId]);
+  const { data: review } = useGetReviewsByRestaurantIdQuery(undefined, {
+    selectFromResult: selectReviewFromResult(reviewId),
+  });
 
-  if (!reviewId) {
-    return <div>No review</div>;
+  if (!review) {
+    return;
   }
 
-  if (review.text) {
-    return <span>{review.text}</span>;
-  } else {
-    return <span>No text</span>;
-  }
+  const { text } = review;
+
+  return <span>{text}</span>;
 };
+
