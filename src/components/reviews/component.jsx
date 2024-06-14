@@ -25,7 +25,7 @@ export const Reviews = ({ restaurantId }) => {
           </li>
         ))}
       </ul>
-      <NewReviewForm />
+      <NewReviewForm restaurantId = {restaurantId} />
     </div>
   );
 };
