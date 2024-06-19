@@ -3,8 +3,10 @@
 import { Review } from "../review/component";
 import { NewReviewForm } from "../new-review-form/component";
 import { useGetReviewsByRestaurantIdQuery } from "../../redux/service/api";
+import { useParams } from "react-router-dom";
 
-export const Reviews = ({ restaurantId }) => {
+export const Reviews = () => {
+  const { restaurantId } = useParams();
   const { data: reviews, isFetching } = useGetReviewsByRestaurantIdQuery(restaurantId);
 
   if (isFetching) {

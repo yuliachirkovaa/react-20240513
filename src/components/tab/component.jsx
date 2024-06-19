@@ -1,22 +1,14 @@
-import { themes } from "../../contexts/theme/constants";
-import { useTheme } from "../../contexts/theme/hooks";
+import { NavLink } from "react-router-dom";
+import styles from "./styles.module.css";
+import classNames from "classnames";
 
-export const Tab = ({ children, onClick, isActive }) => {
-  const { theme } = useTheme();
-
+export const Tab = ({ children, to }) => {
   return (
-    <button
-      onClick = {onClick}
-      disabled = {isActive}
-      style = {{
-        borderStyle: "solid",
-        borderWidth: "0.5px",
-        borderRadius: "2px",
-        borderColor: "buttonborder",
-        background: `${theme === themes.default? "buttonface" : "pink"}`
-      }}
+    <NavLink
+      to = {to}
+      className = {({ isActive }) => classNames(styles.root, {[styles.active]: isActive,})}
     >
       {children}
-    </button>
+    </NavLink>
   );
 }
