@@ -1,9 +1,11 @@
 /* eslint-disable react/jsx-key */
 
+import { useParams } from "react-router-dom";
 import { useGetDishesByRestaurantIdQuery } from "../../redux/service/api";
-import { Dish } from "../dish/component";
+import { Tab } from "../tab/component";
 
-export const Menu = ({ restaurantId }) => {
+export const Menu = () => {
+  const { restaurantId } = useParams();
   const { data: dishes, isFetching } = useGetDishesByRestaurantIdQuery(restaurantId);
 
   if (isFetching) {
@@ -18,9 +20,9 @@ export const Menu = ({ restaurantId }) => {
     <div>
       <h3>Menu</h3>
       <ul>
-        {dishes.map(({ id }) => (
+        {dishes.map(({ id, name }) => (
           <li>
-            <Dish dishId = {id}/>
+            <Tab to = {`/dish/${id}`}>{name}</Tab>
           </li>
         ))}
       </ul>

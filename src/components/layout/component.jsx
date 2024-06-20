@@ -3,16 +3,21 @@
 
 import { Header } from "../header/component";
 import { Footer } from "../footer/component";
+import { UserContextProvider } from "../../contexts/user/provider";
+import { ThemeContextProvider } from "../../contexts/theme/provider";
+import { Outlet } from "react-router-dom";
 
-export const Layout = ({ children }) => {
+export const Layout = () => {
   return (
-    <div>
-      <div id = "modal" style = {{ position: "relative", zIndex: 2 }}/>
-      <div style = {{ zIndex: 1 }}>
-        <Header />
-        {children}
-        <Footer />
-      </div>
-    </div>
+    <UserContextProvider>
+      <ThemeContextProvider>
+        <div id = "modal" style = {{ position: "relative", zIndex: 2 }}/>
+        <div style = {{ zIndex: 1 }}>
+          <Header />
+            <Outlet />
+          <Footer />
+        </div>
+      </ThemeContextProvider>
+    </UserContextProvider>
   );
 };

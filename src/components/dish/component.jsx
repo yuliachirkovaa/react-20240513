@@ -1,42 +1,36 @@
-import { useDispatch, useSelector } from "react-redux";
-import { useUser } from "../../contexts/user/hooks";
+// import { useUser } from "../../contexts/user/hooks";
 import { Counter } from "../counter/component";
-import { selectDishCount } from "../../redux/ui/cart/selectors";
-import { decrement, increment } from "../../redux/ui/cart";
-import { useCallback } from "react";
 import { useGetDishesByRestaurantIdQuery } from "../../redux/service/api";
 import { selectDishFromResult } from "../../redux/service/api/selectors";
+import { useCart } from "../../hooks/use-cart";
+import { useParams } from "react-router-dom";
 
-export const Dish = ({ dishId }) => {
+export const Dish = () => {
+  const { dishId } = useParams();
   const { data: dish } = useGetDishesByRestaurantIdQuery(undefined, {
     selectFromResult: selectDishFromResult(dishId),
   });
 
-  const { user } = useUser();
-  const count = useSelector((state) => selectDishCount(state, dishId));
-  const dispatch = useDispatch();
-
-  const handleIncrement = useCallback(() =>
-    dispatch(increment(dishId)),
-  [dispatch, dishId]);
-
-  const handleDecrement = useCallback(() =>
-    dispatch(decrement(dishId)),
-  [dispatch, dishId]);
+  // const { user } = useUser();
+  const { count, handleIncrement, handleDecrement } = useCart(dishId);
 
   if (!dish) {
     return;
   }
 
-  const { name } = dish;
+  const { name, price, ingredients } = dish;
 
   return (
     <div>
-      <span>{name}</span>
-      {user && (
-        <Counter value = {count} increment = {handleIncrement} decrement = {handleDecrement}/>
-        )
-      }
+      <h3>{name}</h3>
+      <div>{`Price: ${price}$`}</div>
+      <div>Ingredients:</div>
+      <ul>
+        {ingredients.map((ingredient) => (
+          <li>{ingredient}</li>
+        ))}
+      </ul>
+      <Counter value = {count} increment = {handleIncrement} decrement = {handleDecrement}/>
     </div>
   );
 };
