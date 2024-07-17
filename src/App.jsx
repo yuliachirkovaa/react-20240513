@@ -1,6 +1,8 @@
 /* eslint-disable react/jsx-key */
 
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+import { store } from "./redux";
+import { Navigate, RouterProvider, createBrowserRouter } from "react-router-dom";
 import { HomePage } from "./pages/home";
 import { ContactsPage } from "./pages/contacts";
 import { RestaurantsPage } from "./pages/restaurants";
@@ -8,7 +10,9 @@ import { Layout } from "./components/layout/component";
 import { Restaurant } from "./components/restaurant/component";
 import { Menu } from "./components/menu/component";
 import { Reviews } from "./components/reviews/component";
-import { Dish } from "./components/dish/component";
+import {UserContextProvider} from "./contexts/user/provider";
+import {ThemeContextProvider} from "./contexts/theme/provider";
+import { DishPage } from "./pages/dish";
 
 const router = createBrowserRouter([
   {
@@ -26,7 +30,7 @@ const router = createBrowserRouter([
             path: ":restaurantId",
             element: <Restaurant />,
             children: [
-              {index: true, element: <Menu />},
+              {index: true, element: <Navigate to = "menu" replace />},
               {path: "menu", element: <Menu />},
               {path: "reviews", element: <Reviews />},
           ]},
@@ -34,14 +38,20 @@ const router = createBrowserRouter([
       {
         path: "/dish",
         children: [
-          {path: ":dishId", element: <Dish />},
+          {path: ":dishId", element: <DishPage />},
       ]},
   ]},
 ]);
 
 export const App = () => {
   return (
-    <RouterProvider router = {router}/>
+    <Provider store = {store}>
+      <UserContextProvider>
+        <ThemeContextProvider>
+          <RouterProvider router = {router}/>
+        </ThemeContextProvider>
+      </UserContextProvider>
+    </Provider>
   );
 };
 

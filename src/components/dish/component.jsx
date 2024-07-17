@@ -1,4 +1,4 @@
-// import { useUser } from "../../contexts/user/hooks";
+import { useUser } from "../../contexts/user/hooks";
 import { Counter } from "../counter/component";
 import { useGetDishesByRestaurantIdQuery } from "../../redux/service/api";
 import { selectDishFromResult } from "../../redux/service/api/selectors";
@@ -11,7 +11,7 @@ export const Dish = () => {
     selectFromResult: selectDishFromResult(dishId),
   });
 
-  // const { user } = useUser();
+  const { user } = useUser();
   const { count, handleIncrement, handleDecrement } = useCart(dishId);
 
   if (!dish) {
@@ -30,7 +30,7 @@ export const Dish = () => {
           <li>{ingredient}</li>
         ))}
       </ul>
-      <Counter value = {count} increment = {handleIncrement} decrement = {handleDecrement}/>
+      {user && <Counter value = {count} increment = {handleIncrement} decrement = {handleDecrement}/>}
     </div>
   );
 };
